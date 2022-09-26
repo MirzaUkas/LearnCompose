@@ -46,11 +46,8 @@ fun GreetingText(name: String) {
             .width(200.dp)
             .padding(8.dp)
             .clickable { },
-        style = TextStyle(
-            color = Color.Red,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold
-        )
+        style = MaterialTheme.typography.h5,
+        fontWeight = FontWeight.ExtraBold
     )
 }
 
