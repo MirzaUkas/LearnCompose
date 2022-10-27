@@ -9,6 +9,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -28,10 +29,16 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     Surface(color = Color.DarkGray, modifier = Modifier.fillMaxSize()) {
-        Surface(color = Color.Magenta, modifier = Modifier.wrapContentSize()) {
+        Surface(
+            color = Color.Magenta,
+            modifier = Modifier.wrapContentSize(
+                align = Alignment.BottomCenter
+            ),
+
+        ) {
             Text(
                 text = "Wrapped Content",
-                style = MaterialTheme.typography.h3
+                style = MaterialTheme.typography.h4
             )
         }
     }
