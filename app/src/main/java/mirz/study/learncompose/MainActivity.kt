@@ -31,40 +31,27 @@ fun MainScreen() {
     Surface(color = Color.DarkGray, modifier = Modifier.fillMaxSize()) {
 
         Row {
-            Surface(
-                color = Color.Red,
-                modifier = Modifier
-                    .height(500.dp)
-                    .width(50.dp)
-
-            ) {}
-            Surface(
-                color = Color.Blue,
-                modifier = Modifier
-                    .height(500.dp)
-                    .width(50.dp)
-
-            ) {}
-            Column {
-                Surface(
-                    color = Color.Yellow,
-                    modifier = Modifier
-                        .height(100.dp)
-                        .width(100.dp)
-
-                ) {}
-                Surface(
-                    color = Color.Green,
-                    modifier = Modifier
-                        .height(100.dp)
-                        .width(100.dp)
-
-                ) {}
-            }
+            HorizontalBar(Color.Red)
+            HorizontalBar(Color.Blue)
+            HorizontalBar(Color.Yellow)
+            HorizontalBar(Color.Green)
+            HorizontalBar(Color.Magenta)
         }
 
     }
 }
+
+@Composable
+fun HorizontalBar(color: Color){
+    Surface(
+        color = color,
+        modifier = Modifier
+            .height(500.dp)
+            .width(50.dp)
+
+    ) {}
+}
+
 
 @Composable
 fun GreetingText(name: String) {
