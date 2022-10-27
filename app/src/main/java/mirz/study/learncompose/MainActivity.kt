@@ -30,24 +30,35 @@ class MainActivity : ComponentActivity() {
 fun MainScreen() {
     Surface(color = Color.DarkGray, modifier = Modifier.fillMaxSize()) {
 
-        Row {
-            HorizontalBar(Color.Red)
-            HorizontalBar(Color.Blue)
-            HorizontalBar(Color.Yellow)
-            HorizontalBar(Color.Green)
-            HorizontalBar(Color.Magenta)
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.SpaceEvenly,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceAround,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                ColoredSquare(Color.Red)
+                ColoredSquare(Color.Blue)
+            }
+            ColoredSquare(Color.Yellow)
+            ColoredSquare(Color.Green)
+            ColoredSquare(Color.Magenta)
         }
+
 
     }
 }
 
 @Composable
-fun HorizontalBar(color: Color){
+fun ColoredSquare(color: Color) {
     Surface(
         color = color,
         modifier = Modifier
-            .height(500.dp)
-            .width(50.dp)
+            .height(100.dp)
+            .width(100.dp)
 
     ) {}
 }
