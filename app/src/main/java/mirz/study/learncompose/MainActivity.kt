@@ -29,18 +29,40 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     Surface(color = Color.DarkGray, modifier = Modifier.fillMaxSize()) {
-        Surface(
-            color = Color.Magenta,
-            modifier = Modifier.wrapContentSize(
-                align = Alignment.BottomCenter
-            ),
 
-        ) {
-            Text(
-                text = "Wrapped Content",
-                style = MaterialTheme.typography.h4
-            )
+        Row {
+            Surface(
+                color = Color.Red,
+                modifier = Modifier
+                    .height(500.dp)
+                    .width(50.dp)
+
+            ) {}
+            Surface(
+                color = Color.Blue,
+                modifier = Modifier
+                    .height(500.dp)
+                    .width(50.dp)
+
+            ) {}
+            Column {
+                Surface(
+                    color = Color.Yellow,
+                    modifier = Modifier
+                        .height(100.dp)
+                        .width(100.dp)
+
+                ) {}
+                Surface(
+                    color = Color.Green,
+                    modifier = Modifier
+                        .height(100.dp)
+                        .width(100.dp)
+
+                ) {}
+            }
         }
+
     }
 }
 
