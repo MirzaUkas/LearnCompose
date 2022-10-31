@@ -31,24 +31,27 @@ class DynamicContentActivity : ComponentActivity() {
 
 @Composable
 fun MainGreetingScreen() {
+    val greetingListState = remember {
+        mutableStateListOf<String>("Tono","Tono")
+    }
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-       GreetingList()
+       GreetingList(greetingListState){
+           greetingListState.add("Surya")
+       }
     }
 }
 
 @Composable
-fun GreetingList(){
-    val greetingListState = remember {
-        mutableStateListOf<String>("Tono","Tono")
-    }
-    for (name in greetingListState)
+fun GreetingList(names: List<String>, onClick: () -> Unit){
+
+    for (name in names)
         Text(text = "Hello $name!", style = MaterialTheme.typography.h3)
 
-    Button(onClick = { greetingListState.add("Surya") }) {
+    Button(onClick =  onClick ) {
         Text("Add Name")
     }
 }
