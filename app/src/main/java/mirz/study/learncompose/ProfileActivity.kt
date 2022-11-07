@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
@@ -42,6 +43,25 @@ class ProfileActivity : ComponentActivity() {
 }
 
 @Composable
+fun UserProfileDetailScreen(user: UserProfile = userProfileList[0]) {
+    Scaffold(topBar = { AppBar() }) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colors.background
+        ) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Top
+            ) {
+                ProfilePicture(user.pictureUrl, user.status, 240.dp)
+                ProfileContent(user.name, user.status, Alignment.CenterHorizontally)
+            }
+        }
+    }
+}
+
+@Composable
 fun MainProfileScreen(users: List<UserProfile>) {
     Scaffold(topBar = { AppBar() }) {
         Surface(
@@ -55,7 +75,6 @@ fun MainProfileScreen(users: List<UserProfile>) {
             }
         }
     }
-
 }
 
 @Composable
@@ -81,17 +100,17 @@ fun ProfileCard(userProfile: UserProfile) {
             horizontalArrangement = Arrangement.Start
         ) {
             ProfilePicture(userProfile.pictureUrl, userProfile.status)
-            ProfileContent(userProfile.name, userProfile.status)
+            ProfileContent(userProfile.name, userProfile.status, Alignment.Start)
         }
     }
 }
 
 @Composable
-fun ProfileContent(name: String, status: Boolean) {
+fun ProfileContent(name: String, status: Boolean, alignment: Alignment.Horizontal) {
     Column(
         modifier = Modifier
-            .padding(8.dp)
-            .fillMaxWidth()
+            .padding(8.dp),
+        horizontalAlignment = alignment
     ) {
         CompositionLocalProvider(LocalContentAlpha provides (if (status) 1f else ContentAlpha.medium)) {
             Text(name, style = MaterialTheme.typography.h5)
@@ -109,7 +128,7 @@ fun ProfileContent(name: String, status: Boolean) {
 }
 
 @Composable
-fun ProfilePicture(pictureUrl: String, status: Boolean) {
+fun ProfilePicture(pictureUrl: String, status: Boolean, imageSize: Dp = 72.dp) {
     Card(
         shape = CircleShape,
         border = BorderStroke(width = 2.dp, color = if (status) Color.Green else Color.Red),
@@ -121,7 +140,7 @@ fun ProfilePicture(pictureUrl: String, status: Boolean) {
                 transformations(CircleCropTransformation())
             }),
             contentDescription = "",
-            modifier = Modifier.size(72.dp)
+            modifier = Modifier.size(imageSize)
         )
     }
 
@@ -130,8 +149,16 @@ fun ProfilePicture(pictureUrl: String, status: Boolean) {
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview2() {
+fun UserListPreview() {
     LearnComposeTheme {
         MainProfileScreen(userProfileList)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun UserProfileDetailPreview() {
+    LearnComposeTheme {
+        UserProfileDetailScreen()
     }
 }
